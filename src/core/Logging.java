@@ -4,10 +4,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
-
+/**
+ * 
+ * @author Mathias Thejsen - Thejsen@live.dk - s175192
+ *
+ */
 public class Logging {
 	static BufferedWriter writer;
-	public static void writeLog(String name, String string) {
+	protected static void writeLog(String name, String string) {
 		try {
 			writer = new BufferedWriter(new FileWriter(name+".txt", true));
 			writer.append(string);
@@ -21,7 +25,7 @@ public class Logging {
 	
 
 	}
-	public static void clearLog(String name) {
+	protected static void clearLog(String name) {
 		try {
 			writer = new BufferedWriter(new FileWriter(name+".txt",false));
 			writer.flush();
@@ -31,7 +35,7 @@ public class Logging {
 			e.printStackTrace();
 		}
 	}
-	public static void closeLog() {
+	protected static void closeLog() {
 		try {
 			writer.close();
 		} catch (IOException e) {

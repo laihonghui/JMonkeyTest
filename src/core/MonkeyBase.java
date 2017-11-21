@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 
 /**
- * @author Mathias Thejsen - Thejsen@live.dk
+ * @author Mathias Thejsen - Thejsen@live.dk - s175192
  *
  */
 public class MonkeyBase {

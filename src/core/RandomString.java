@@ -2,7 +2,6 @@ package core;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class RandomString {
 	protected static String generateString(String testname, int iteration) {
