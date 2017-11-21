@@ -6,32 +6,32 @@ import java.util.logging.Level;
 public class RandomString {
 	protected static String generateString(String testname, int iteration) {
 		int i = ThreadLocalRandom.current().nextInt(1, 5);
-		String chars = "abcdefghijklmnopqrstuvxyz";
-		String symbols = "!#¤%&¤%&/()=?1`@£<<{[]}|¨~^'*,;.:-_<>½§";
-		String numbers = "1234567890";
+		String[] chars = {"a","b","c","d","e","f","g","h","i","j","k","l","m","o","p","q","r","s","t","u","v","x","y","z"};
+		String[] symbols = {"!","#","¤","%","&","¤","%","&","/","(",")","=","?","`","@","£","<","<","{","[","]","}","|","¨","~","^","'","*",";",".",":","-","<",">","½","§"};		
 		String randomString="";
+		String stringlenght = Integer.toString(ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE));
 		switch (i) {
 		case 1:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
-				randomString = randomString+chars.charAt(ThreadLocalRandom.current().nextInt(1,chars.length()));
+			for (int j = 0; j < stringlenght.length(); j++) {
+				randomString = randomString+chars[ThreadLocalRandom.current().nextInt(0,chars.length)];
 			}
 			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
 			return randomString;
 		case 2:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
-				randomString = randomString+symbols.charAt(ThreadLocalRandom.current().nextInt(1,symbols.length()));
+			for (int j = 0; j <stringlenght.length(); j++) {
+				randomString = randomString+symbols[ThreadLocalRandom.current().nextInt(0,symbols.length)];
 			}
 			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
 			return randomString;
 		case 3:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
-				randomString = randomString+numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()));
+			for (int j = 0; j < stringlenght.length(); j++) {
+				randomString = randomString+Integer.toString(ThreadLocalRandom.current().nextInt(0,10));
 			}
 			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
 			return randomString;
 		case 4:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
-				randomString = randomString+chars.charAt(ThreadLocalRandom.current().nextInt(1,chars.length()))+symbols.charAt(ThreadLocalRandom.current().nextInt(1,symbols.length()))+numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()));
+			for (int j = 0; j < stringlenght.length(); j++) {
+				randomString = randomString+chars[ThreadLocalRandom.current().nextInt(0,chars.length)]+symbols[ThreadLocalRandom.current().nextInt(0,symbols.length)]+Integer.toString(ThreadLocalRandom.current().nextInt(0,10));
 				j++;
 				j++;
 			}

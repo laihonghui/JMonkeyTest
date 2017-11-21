@@ -17,7 +17,9 @@ public class MonkeyBase {
 	private String testname;
 	private int iterations, currentIteration;
 	private Date date;
+	private long starttime = 0;
 	public MonkeyBase(String testname, int iterations) {
+		this.starttime = System.nanoTime();
 		this.testname = testname;
 		this.iterations = iterations;
 		this.currentIteration = 0;
@@ -93,6 +95,7 @@ public class MonkeyBase {
 	}
 	
 	private void finishTest() {
+		System.out.println(System.nanoTime()-this.starttime);
 		logger.log(Level.INFO,"Finished test: "+this.testname+" with "+this.iterations+" iterations"+" see log file for more info");
 		Logging.writeLog(this.testname, date.toString()+"|Finished test, with"+this.iterations+" iteratoins");
 	}

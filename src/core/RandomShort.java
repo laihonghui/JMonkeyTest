@@ -4,21 +4,17 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomShort {
+	static int i = 1;
 	public static short generateShort(String testname, int iteration) {
-		int i = ThreadLocalRandom.current().nextInt(1,3);
-		String numbers = "1234567890";
+		if(i!=2) {i++;}else {i=1;}
 		short randomShort = 0;
 		switch (i) {
 		case 1:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Short.MAX_VALUE); j++) {
-				randomShort = (short) (randomShort+Short.parseShort(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(0,numbers.length())))));
-			}
+			randomShort = (short) ThreadLocalRandom.current().nextInt(Short.MIN_VALUE,Short.MAX_VALUE);
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomShort).length()));
 			return randomShort;
 		case 2:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Short.MAX_VALUE); j++) {
-				randomShort = (short) (randomShort+Short.parseShort(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(0,numbers.length())))));
-			}
+			randomShort = (short) ThreadLocalRandom.current().nextInt(Short.MIN_VALUE,Short.MAX_VALUE);
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomShort).length()));
 			return randomShort;
 		default:

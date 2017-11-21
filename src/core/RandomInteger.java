@@ -10,19 +10,14 @@ import java.util.logging.Level;
 public class RandomInteger {
 	protected static int generateInt(String testname, int iteration) {
 		int i = ThreadLocalRandom.current().nextInt(1,3);
-		String numbers = "1234567890";
 		int randomInteger = 0;
 		switch (i) {
 		case 1:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
-				randomInteger = randomInteger+Integer.parseInt(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()))));
-			}
+			randomInteger = ThreadLocalRandom.current().nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomInteger).length()));
 			return randomInteger;
 		case 2:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
-				randomInteger = randomInteger+Integer.parseInt(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()))));
-			}
+			randomInteger = ThreadLocalRandom.current().nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomInteger).length()));
 			return randomInteger*-1;
 		default:

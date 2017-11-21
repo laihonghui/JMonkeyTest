@@ -1,11 +1,11 @@
 package core;
 
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomBoolean {
+	static int i = 1;
 	protected static boolean generateBoolean(String testname, int iteration) {
-		int i = ThreadLocalRandom.current().nextInt(1,3);
+		if(i!=2) {i++;}else {i=1;}
 		switch (i) {
 		case 1:
 			Logging.writeLog(testname, generateLog(i,iteration));
