@@ -48,11 +48,50 @@ public class MonkeyBase {
 		return RandomInteger.generateInt(this.testname, this.currentIteration);
 	}
 
-	public long randomLong() {
-		//Needs to be implemented
-		return 1234;
+	public long randomLong() {	
+		if(this.currentIteration == this.iterations) {
+			finishTest();
+		}
+		while(this.currentIteration <= this.iterations) {
+			this.currentIteration++;
+			return RandomInteger.generateInt(this.testname, this.currentIteration)*10000;
+		}
+		return RandomInteger.generateInt(this.testname, this.currentIteration)*10000;
 	}
-
+	
+	public boolean randomBoolean() {
+		if(this.currentIteration == this.iterations) {
+			finishTest();
+		}
+		while(this.currentIteration <= this.iterations) {
+			this.currentIteration++;
+			return RandomBoolean.generateBoolean(this.testname, this.currentIteration);
+		}
+		return RandomBoolean.generateBoolean(this.testname, this.currentIteration);
+	}
+	
+	public byte randomByte() {
+		if(this.currentIteration == this.iterations) {
+			finishTest();
+		}
+		while(this.currentIteration <= this.iterations) {
+			this.currentIteration++;
+			return RandomByte.generateByte(this.testname, this.currentIteration);
+		}
+		return RandomByte.generateByte(this.testname, this.currentIteration);
+	}
+	
+	public char randomChar() {
+		if(this.currentIteration == this.iterations) {
+			finishTest();
+		}
+		while(this.currentIteration <= this.iterations) {
+			this.currentIteration++;
+			return RandomChar.generateChar(this.testname, this.currentIteration);
+		}
+		return RandomChar.generateChar(this.testname, this.currentIteration);
+	}
+	
 	private void finishTest() {
 		logger.log(Level.INFO,"Finished test: "+this.testname+" with "+this.iterations+" iterations"+" see log file for more info");
 		Logging.writeLog(this.testname, date.toString()+"|Finished test, with"+this.iterations+" iteratoins");

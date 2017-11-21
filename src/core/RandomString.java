@@ -12,25 +12,25 @@ public class RandomString {
 		String randomString="";
 		switch (i) {
 		case 1:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(100,10000)*10; j++) {
+			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
 				randomString = randomString+chars.charAt(ThreadLocalRandom.current().nextInt(1,chars.length()));
 			}
 			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
 			return randomString;
 		case 2:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(100,10000)*10; j++) {
+			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
 				randomString = randomString+symbols.charAt(ThreadLocalRandom.current().nextInt(1,symbols.length()));
 			}
 			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
 			return randomString;
 		case 3:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(100,10000)*10; j++) {
+			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
 				randomString = randomString+numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()));
 			}
 			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
 			return randomString;
 		case 4:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(100,10000)*10; j++) {
+			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
 				randomString = randomString+chars.charAt(ThreadLocalRandom.current().nextInt(1,chars.length()))+symbols.charAt(ThreadLocalRandom.current().nextInt(1,symbols.length()))+numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()));
 				j++;
 				j++;

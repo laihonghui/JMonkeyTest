@@ -14,20 +14,17 @@ public class RandomInteger {
 		int randomInteger = 0;
 		switch (i) {
 		case 1:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(1,10000)*100; j++) {
-				randomInteger = randomInteger+j*10*Integer.parseInt(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()))));
+			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
+				randomInteger = randomInteger+Integer.parseInt(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()))));
 			}
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomInteger).length()));
 			return randomInteger;
 		case 2:
-			for (int j = 0; j < ThreadLocalRandom.current().nextInt(1,10000)*100; j++) {
-				randomInteger = randomInteger+j*10*Integer.parseInt(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()))));
-			}
-			if(randomInteger > 0) {
-				randomInteger = randomInteger*-1;
+			for (int j = 0; j < ThreadLocalRandom.current().nextInt(0,Integer.MAX_VALUE); j++) {
+				randomInteger = randomInteger+Integer.parseInt(Character.toString(numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()))));
 			}
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomInteger).length()));
-			return 0;
+			return randomInteger*-1;
 		default:
 			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random string, i="+i+" with the testname="+testname);
 			return 0;
@@ -37,9 +34,9 @@ public class RandomInteger {
 	private static String generateLog(int i, int iteration, int len) {
 		switch (i) {
 		case 1:
-			return("i=1 |"+"iteration="+iteration+"|"+" Generating random sequence of positive numbers, with a lenght of " + len);			
+			return("i=1 |"+"iteration="+iteration+"|"+" Generating random positive integer, with a lenght of " + len);			
 		case 2:
-			return("i=2 |"+"iteration="+iteration+"|"+" Generating random sequence of negtive numbers, with a lenght of " + len);
+			return("i=2 |"+"iteration="+iteration+"|"+" Generating random negative integer, with a lenght of " + len);
 		default:
 			return("I="+i+"|"+"ITERATION="+iteration+"|"+"SOMETHING WENT WRONG WITH A LENGHT OF " + len);
 		}
