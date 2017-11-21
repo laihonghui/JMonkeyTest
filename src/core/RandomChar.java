@@ -25,7 +25,7 @@ public class RandomChar {
 			return randomChar;
 
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random string, i="+i+" with the testname="+testname);
+			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random char, i="+i+" with the testname="+testname);
 			return 0;
 		}
 	}

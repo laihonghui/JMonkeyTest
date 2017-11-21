@@ -4,9 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomShort {
-	static int i = 1;
 	public static short generateShort(String testname, int iteration) {
-		if(i!=2) {i++;}else {i=1;}
+		int i = ThreadLocalRandom.current().nextInt(1,3);
 		short randomShort = 0;
 		switch (i) {
 		case 1:
@@ -18,7 +17,7 @@ public class RandomShort {
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomShort).length()));
 			return randomShort;
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random string, i="+i+" with the testname="+testname);
+			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random short, i="+i+" with the testname="+testname);
 			return 0;
 		}
 	}

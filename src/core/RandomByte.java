@@ -4,9 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomByte {
-	static int i = 1;
 	protected static byte generateByte(String testname, int iteration) {
-		if(i!=2) {i++;}else {i=1;}
+		int i = ThreadLocalRandom.current().nextInt(1,3);
 		byte randomByte;
 		switch (i) {
 		case 1:

@@ -21,7 +21,7 @@ public class RandomInteger {
 			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomInteger).length()));
 			return randomInteger*-1;
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random string, i="+i+" with the testname="+testname);
+			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random integer, i="+i+" with the testname="+testname);
 			return 0;
 		}
 	}
