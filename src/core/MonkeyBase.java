@@ -17,8 +17,9 @@ public class MonkeyBase {
 	private String testname;
 	private int iterations, currentIteration;
 	private Date date;
-	public MonkeyBase(String testname) {
+	public MonkeyBase(String testname, int iterations) {
 		this.testname = testname;
+		this.iterations = iterations;
 		this.currentIteration = 0;
 		this.date = new Date();
 		Logging.clearLog(this.testname);
@@ -71,5 +72,7 @@ public class MonkeyBase {
 		return RandomDouble.generateDouble(this.testname, this.currentIteration);
 	}
 
-
+	public int getIterations() {
+		return iterations;
+	}
 }
