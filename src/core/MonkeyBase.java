@@ -13,8 +13,9 @@ import java.util.logging.Logger;
  */
 public class MonkeyBase {
 	public static Logger logger = Logger.getLogger(MonkeyBase.class.getName());
-	private String testname;
-	private int iterations, currentIteration;
+	protected String testname;
+	protected int iterations;
+	private int currentIteration;
 	private Date date;
 	public MonkeyBase(String testname, int iterations) {
 		this.testname = testname;
