@@ -17,6 +17,7 @@ public class Testing {
 		MonkeySwing test = new MonkeySwing("test", 100);
 	}
 
+	
 	public static void test(String test1, int test2, byte test3, boolean test4, long test5, char test6, double test7, float test8, short test9) {
 
 	}

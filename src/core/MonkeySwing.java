@@ -1,5 +1,4 @@
 package core;
-import java.awt.AWTException;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -10,15 +9,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.swing.*;
-
-import com.sun.glass.events.KeyEvent;        
+import javax.swing.*;        
 
 public class MonkeySwing extends MonkeyBase {
 	protected int currentiteration;
 	protected boolean running;
 	protected boolean testingmode = true;
-	protected Robot robot;
 	private Date date;
 	public MonkeySwing(String testname, int iterations) {
 		super(testname, iterations);
@@ -27,19 +23,14 @@ public class MonkeySwing extends MonkeyBase {
 		this.currentiteration = 0;
 		this.running = true;
 		this.date = new Date();
-		Logging.clearLog(this.testname);
-		Logging.writeLog(this.testname, date.toString()+"|Started test");
-		try {
-			this.robot = new Robot();
-		} catch (AWTException e1) {
-			e1.printStackTrace();
-		}
+		Logging.clearLog(this.testname); // Clear old log
+		Logging.writeLog(this.testname, date.toString()+"|Started test"); // start new log with date/time stamp
 		if(testingmode==true) {
 			javax.swing.SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					createAndShowGUI();
 					try {
-						Thread.sleep(200);
+						Thread.sleep(200); //Wait a bit performing the tests until our gui has been initialized
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -71,15 +62,19 @@ public class MonkeySwing extends MonkeyBase {
 		JButton button1 = new JButton("test");
 		button1.setBounds(10,50,165,25);
 		frame.add(button1);
+		JCheckBox check = new JCheckBox("checkbox");
+		check.setBounds(10, 50, 165, 125);
+		frame.add(check);
+		JRadioButton button2 = new JRadioButton("testradio");
+		button2.setBounds(10, 50, 165, 25);
+		frame.add(button2);
+
 		frame.pack();
-		
-		
-		
 		frame.setSize(400, 600);
 		frame.setVisible(true);
 	}
 
-	//Method below finds all components, and then tests the various components.
+	//Method below finds all components, and then either digs deeper into containers or test the components
 
 	public List<Component> getAllComponents(final Container c){
 		Component[] comps = c.getComponents();
@@ -91,6 +86,19 @@ public class MonkeySwing extends MonkeyBase {
 				if (comp instanceof Container) {
 					compList.addAll(getAllComponents((Container) comp));//Dealing with containers, so leets travel deeper into the ui
 				}
+				if(comp instanceof JFrame) {
+					JFrame frame = (JFrame) comp;
+					compList.addAll(getAllComponents(frame));
+				}
+				if(comp instanceof JInternalFrame) {
+					JInternalFrame frame = (JInternalFrame) comp;
+					compList.addAll(getAllComponents(frame));
+				}
+				if(comp instanceof JPanel) {
+					JPanel panel = (JPanel) comp;
+					compList.addAll(getAllComponents(panel));
+				}
+								
 				if(comp instanceof JButton) { // Dealing with buttons
 					JButton button = (JButton) comp;
 					button.doClick();
@@ -115,8 +123,6 @@ public class MonkeySwing extends MonkeyBase {
 					JTextField mytext = (JTextField) comp;
 					String text = this.randomString();
 					mytext.setText(text); // Fill with random string
-					robot.keyPress(KeyEvent.VK_ENTER); // Press enter, incase it accepts input
-					robot.keyRelease(KeyEvent.VK_ENTER);
 					Logging.writeLog(this.testname, "Filling textfield with the name of: "+mytext.getName()+" with the string: "+text + " and pressing enter");
 				}
 
@@ -124,8 +130,6 @@ public class MonkeySwing extends MonkeyBase {
 					JPasswordField passwordfield = (JPasswordField) comp;
 					String text = this.randomString();
 					passwordfield.setText(this.randomString());
-					robot.keyPress(KeyEvent.VK_ENTER);
-					robot.keyRelease(KeyEvent.VK_ENTER);
 					Logging.writeLog(this.testname, "Filling passwordfield with the name of: "+passwordfield.getName()+" with the string: "+text + " and pressing enter");
 
 				}
@@ -134,7 +138,12 @@ public class MonkeySwing extends MonkeyBase {
 					mytext.setText(this.randomString());
 
 				}
-
+				if(comp instanceof JRadioButton) {
+					JRadioButton button = (JRadioButton) comp;
+					button.doClick();
+					Logging.writeLog(this.testname, "Pressing radiobutton with the name of: "+button.getName() );
+				}
+				
 			}
 		}   
 		return compList;
