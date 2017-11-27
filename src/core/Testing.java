@@ -1,7 +1,5 @@
 package core;
 
-import java.awt.Frame;
-
 /**
  * 
  * @author Mathias Thejsen - Thejsen@live.dk - s175192
@@ -13,6 +11,8 @@ public class Testing {
 		for (int i = 0; i <= 2000; i++) {
 			test(test1.randomString(), test1.randomInt(), test1.randomByte(), test1.randomBoolean(), test1.randomLong(), test1.randomChar(), test1.randomDouble(), test1.randomFloat(),test1.randomShort());
 		}
+		
+		
 		MonkeySwing test2 = new MonkeySwing("test", 100);// Testing swing ui
 	}
 	/**
