@@ -4,22 +4,23 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomByte {
-	protected static byte generateByte(String testname, int iteration) {
+	protected static byte generateByte(MonkeyStress test) {
 		int i = ThreadLocalRandom.current().nextInt(1,3);
 		byte randomByte;
 		switch (i) {
 		case 1:
 			randomByte = (byte) ThreadLocalRandom.current().nextInt(0,127);
-			Logging.writeLog(testname, generateLog(i,iteration));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration));
 			return randomByte;
 		case 2:
 			randomByte = (byte) ThreadLocalRandom.current().nextInt(-127,0);
-			Logging.writeLog(testname, generateLog(i,iteration));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration));
 			return randomByte;
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random byte, i="+i+" with the testname="+testname);
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong generating a random byte, i="+i+" with the testname="+test.testname);
 			return 0;
 		}
+
 	}
 
 	private static String generateLog(int i, int iteration) {

@@ -4,17 +4,17 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomBoolean {
-	protected static boolean generateBoolean(String testname, int iteration) {
+	protected static boolean generateBoolean(MonkeyStress test) {
 		int i = ThreadLocalRandom.current().nextInt(1,3);
 		switch (i) {
 		case 1:
-			Logging.writeLog(testname, generateLog(i,iteration));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration));
 			return true;
 		case 2:
-			Logging.writeLog(testname, generateLog(i,iteration));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration));
 			return false;
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random boolean, i="+i+" with the testname="+testname);
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong generating a random boolean, i="+i+" with the testname="+test.testname);
 			return false;
 		}
 	}

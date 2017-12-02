@@ -19,7 +19,7 @@ public class Logging {
 			writer.close();
 
 		} catch (IOException e) {
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong trying to write to the log with following name and string: "+name+" | "+string);
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong trying to write to the log with following name and string: "+name+" | "+string);
 			e.printStackTrace();
 		}
 	
@@ -30,7 +30,7 @@ public class Logging {
 			writer = new BufferedWriter(new FileWriter(name+".txt",false));
 			writer.close();
 		} catch (Exception e) {
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong trying to clear log with filename: "+name+".txt");
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong trying to clear log with filename: "+name+".txt");
 			e.printStackTrace();
 		}
 	}

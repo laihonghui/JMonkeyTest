@@ -4,20 +4,20 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomFloat {
-	public static float generateFloat(String testname, int iteration) {
+	public static float generateFloat(MonkeyStress test) {
 		int i = ThreadLocalRandom.current().nextInt(1,3);
 		float randomFloat;
 		switch (i) {
 		case 1:
 			randomFloat = ThreadLocalRandom.current().nextFloat();
-			Logging.writeLog(testname, generateLog(i,iteration,Float.toString(randomFloat).length()));
+			Logging.writeLog(test.testname, generateLog(i,test.iterations,Float.toString(randomFloat).length()));
 			return randomFloat;
 		case 2:
 			randomFloat = ThreadLocalRandom.current().nextFloat();
-			Logging.writeLog(testname, generateLog(i,iteration,Float.toString(randomFloat).length()));
+			Logging.writeLog(test.testname, generateLog(i,test.iterations,Float.toString(randomFloat).length()));
 			return (float) (randomFloat*-1.0);
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random float, i="+i+" with the testname="+testname);
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong generating a random float, i="+i+" with the testname="+test.testname);
 			return 0;
 		}
 	}

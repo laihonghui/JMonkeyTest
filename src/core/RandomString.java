@@ -4,7 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomString {
-	protected static String generateString(String testname, int iteration) {
+	protected static String generateString(MonkeyStress test) {
 		int i = ThreadLocalRandom.current().nextInt(1, 5);
 		String[] chars = {"a","b","c","d","e","f","g","h","i","j","k","l","m","o","p","q","r","s","t","u","v","x","y","z"};
 		String[] symbols = {"!","#","¤","%","&","¤","%","&","/","(",")","=","?","`","@","£","<","<","{","[","]","}","|","¨","~","^","'","*",";",".",":","-","<",">","½","§"};		
@@ -15,19 +15,19 @@ public class RandomString {
 			for (int j = 0; j < stringlenght.length(); j++) {
 				randomString = randomString+chars[ThreadLocalRandom.current().nextInt(0,chars.length)];
 			}
-			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration, randomString.length()));
 			return randomString;
 		case 2:
 			for (int j = 0; j <stringlenght.length(); j++) {
 				randomString = randomString+symbols[ThreadLocalRandom.current().nextInt(0,symbols.length)];
 			}
-			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration, randomString.length()));
 			return randomString;
 		case 3:
 			for (int j = 0; j < stringlenght.length(); j++) {
 				randomString = randomString+Integer.toString(ThreadLocalRandom.current().nextInt(0,10));
 			}
-			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration, randomString.length()));
 			return randomString;
 		case 4:
 			for (int j = 0; j < stringlenght.length(); j++) {
@@ -35,10 +35,10 @@ public class RandomString {
 				j++;
 				j++;
 			}
-			Logging.writeLog(testname, generateLog(i,iteration, randomString.length()));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration, randomString.length()));
 			return randomString;
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random string, i="+i+" with the testname="+testname);
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong generating a random string, i="+i+" with the testname="+test.testname);
 			return "";
 		}
 	}

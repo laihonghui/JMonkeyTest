@@ -4,7 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
 public class RandomChar {
-	public static char generateChar(String testname, int iteration) {
+	public static char generateChar(MonkeyStress test) {
 		int i = ThreadLocalRandom.current().nextInt(1,4);
 		String chars = "abcdefghijklmnopqrstuvxyz";
 		String symbols = "!#¤%&¤%&/()=?1`@£<<{[]}|¨~^'*,;.:-_<>½§";
@@ -13,19 +13,19 @@ public class RandomChar {
 		switch (i) {
 		case 1:
 			randomChar = chars.charAt(ThreadLocalRandom.current().nextInt(1,chars.length()));		
-			Logging.writeLog(testname, generateLog(i,iteration, randomChar));
+			Logging.writeLog(test.testname, generateLog(i,test.iterations, randomChar));
 			return randomChar;
 		case 2:
 			randomChar = symbols.charAt(ThreadLocalRandom.current().nextInt(1,symbols.length()));
-			Logging.writeLog(testname, generateLog(i,iteration, randomChar));
+			Logging.writeLog(test.testname, generateLog(i,test.iterations, randomChar));
 			return randomChar;
 		case 3:
 			randomChar = numbers.charAt(ThreadLocalRandom.current().nextInt(1,numbers.length()));
-			Logging.writeLog(testname, generateLog(i,iteration, randomChar));
+			Logging.writeLog(test.testname, generateLog(i,test.iterations, randomChar));
 			return randomChar;
 
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random char, i="+i+" with the testname="+testname);
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong generating a random char, i="+i+" with the testname="+test.testname);
 			return 0;
 		}
 	}

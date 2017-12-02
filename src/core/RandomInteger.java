@@ -8,20 +8,20 @@ import java.util.logging.Level;
  *
  */
 public class RandomInteger {
-	protected static int generateInt(String testname, int iteration) {
+	protected static int generateInt(MonkeyStress test) {
 		int i = ThreadLocalRandom.current().nextInt(1,3);
 		int randomInteger = 0;
 		switch (i) {
 		case 1:
 			randomInteger = ThreadLocalRandom.current().nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
-			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomInteger).length()));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration,Integer.toString(randomInteger).length()));
 			return randomInteger;
 		case 2:
 			randomInteger = ThreadLocalRandom.current().nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
-			Logging.writeLog(testname, generateLog(i,iteration,Integer.toString(randomInteger).length()));
+			Logging.writeLog(test.testname, generateLog(i,test.currentIteration,Integer.toString(randomInteger).length()));
 			return randomInteger*-1;
 		default:
-			MonkeyBase.logger.log(Level.WARNING, "Something went wrong generating a random integer, i="+i+" with the testname="+testname);
+			MonkeyStress.logger.log(Level.WARNING, "Something went wrong generating a random integer, i="+i+" with the testname="+test.testname);
 			return 0;
 		}
 	}

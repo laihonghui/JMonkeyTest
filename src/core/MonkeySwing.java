@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.*;        
 
-public class MonkeySwing extends MonkeyBase {
+public class MonkeySwing extends MonkeyStress {
 	protected int currentiteration;
 	protected boolean running;
 	protected boolean testingmode = true;
